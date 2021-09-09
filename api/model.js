@@ -1,9 +1,5 @@
 const db = require("./../data/db-config");
 
-// const getRecipeById = async (id) => {
-//   return db("recipe").where("recipe_id", id).first();
-// };
-
 const getRecipeById = async (id) => {
   const rows = await db("recipe")
     .leftJoin("recipe_steps", "recipe.recipe_id", "recipe_steps.step_id")
@@ -18,7 +14,6 @@ const getRecipeById = async (id) => {
   };
 
   rows.map((row) => {
-    console.log(row);
     row.recipe_id
       ? result.steps.push({
           step_id: row.step_id,
